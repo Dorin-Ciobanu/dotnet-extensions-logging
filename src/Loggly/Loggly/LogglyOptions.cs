@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 
 namespace EMG.Extensions.Logging.Loggly
 {
@@ -26,6 +27,7 @@ namespace EMG.Extensions.Logging.Loggly
         public Action<LogglyMessage> PreProcessMessage { get; set; }
 
         public Encoding ContentEncoding { get; set; } = Encoding.UTF8;
+        public JsonSerializerSettings SerializerSettings { get; set; } = JsonSettings.SerializerSettings;
     }
 
     public delegate bool FilterDelegate(string categoryName, EventId eventId, LogLevel logLevel);
