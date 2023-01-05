@@ -27,6 +27,7 @@ namespace EMG.Extensions.Logging.Loggly
         public Action<LogglyMessage> PreProcessMessage { get; set; }
 
         public Encoding ContentEncoding { get; set; } = Encoding.UTF8;
+
         public JsonSerializerSettings SerializerSettings { get; set; } = JsonSettings.SerializerSettings;
     }
 

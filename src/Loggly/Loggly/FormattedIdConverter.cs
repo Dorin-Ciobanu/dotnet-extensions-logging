@@ -2,9 +2,9 @@
 using System;
 using System.Collections.Generic;
 
-class FormattedIdConverter : JsonConverter
+public class FormattedIdConverter : JsonConverter
 {
-    HashSet<Type> IdNumericTypes = new HashSet<Type>
+    private readonly HashSet<Type> IdNumericTypes = new HashSet<Type>
     {
         typeof(byte), typeof(short), typeof(int), typeof(long),
         typeof(sbyte), typeof(ushort), typeof(uint), typeof(ulong),

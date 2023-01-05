@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using AutoFixture;
 using AutoFixture.AutoMoq;
+using AutoFixture.Kernel;
 using AutoFixture.NUnit3;
 using EMG.Extensions.Logging.Loggly;
+using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using WorldDomination.Net.Http;
 
 namespace Tests
@@ -28,9 +32,12 @@ namespace Tests
 
             fixture.Customize<HttpClient>(c => c.FromFactory((FakeHttpMessageHandler handler) => new HttpClient(handler)));
 
+            fixture.Customize<CookieContainer>(c => c.FromFactory(() => new CookieContainer()));
+
             fixture.Customize<LogglyOptions>(o => o
                                                   .Without(p => p.LogglyHost)
                                                   .Without(p => p.LogglyScheme)
+                                                  .Without(p => p.SerializerSettings)
                                                   .With(p => p.SuppressExceptions, false)
                                                   .With(p => p.ContentEncoding, Encoding.UTF8));
 
